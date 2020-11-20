@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	<data>
+		<variable
+			name="vm"
+			type="org.yuni.chemicalnote.viewmodels.ScoreViewModel" />
+		<variable
+			name="fragment"
+			type="org.yuni.chemicalnote.fragments.ScoreFragment" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".fragments.ScoreFragment">
+
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="12dp"
+			android:text="Electrochemical Series"
+			android:textSize="25sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+
+		<Button
+			android:id="@+id/button_add_home"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginBottom="16dp"
+			android:onClick="@{(v) -> vm.onAddHomeClick(v)}"
+			android:text="Tambah"
+			app:layout_constraintBottom_toTopOf="@+id/guideline"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+
+
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/guideline"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			app:layout_constraintGuide_percent="1" />
+
+		<TextView
+			android:id="@+id/text_home_score"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{String.valueOf(vm.getHomeScorer())}"
+			android:textSize="30sp"
+			app:layout_constraintBottom_toTopOf="@+id/guideline"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+
+		<TextView
+			android:id="@+id/text_home_scorer"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:text="@{vm.getHomeScorer()}"
+			app:layout_constraintBottom_toTopOf="@+id/button_add_home"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
