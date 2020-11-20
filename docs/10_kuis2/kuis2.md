@@ -6,7 +6,7 @@ Navigasi
 ![gambar2](img/navigasi.jpg)
 
 Fragment dan ViewModel
-![gambar3](img/fragment)
+![gambar3](img/fragment.jpg)
 
 Fragment dan ViewModel
 ![gambar4](img/viewmodel.jpg)
