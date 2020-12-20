@@ -4,43 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@drawable/bgmain"
     tools:context=".MainActivity">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:id="@+id/bg_top_header"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/grad">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:background="@drawable/bg4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent=".67"
-        app:layout_constraintVertical_bias="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".67"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bg_top_header"
-        android:background="@drawable/shape">
+        app:layout_constraintVertical_bias="1">
+
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="225dp"
+            android:layout_marginTop="40dp"
             android:alignmentMode="alignMargins"
-            android:columnCount="2"
             android:columnOrderPreserved="false"
             android:padding="14dp"
-            android:rowCount="2"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:layout_editor_absoluteX="0dp">
 
@@ -49,10 +34,10 @@
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:onClick="TabelPeriodik"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="16dp"
+                android:onClick="TabelPeriodik"
                 app:cardBackgroundColor="@color/textcardColor"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="6dp">
@@ -76,62 +61,38 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/allerta_stencil"
-                        android:text="Tabel Periodik"
                         android:gravity="center"
+                        android:text="Tabel Periodik"
                         android:textColor="@color/bg"
                         android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:padding="14dp"
+            android:rowCount="2"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_editor_absoluteX="0dp">
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:onClick="Dataview"
-                app:cardBackgroundColor="@color/textcardColor"
-                app:cardCornerRadius="23dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/flask"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/allerta_stencil"
-                        android:text="Tambah "
-                        android:textColor="@color/bg"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:onClick="GuideBook"
                 android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="16dp"
+                android:onClick="GuideBook"
                 app:cardBackgroundColor="@color/textcardColor"
                 app:cardCornerRadius="23dp"
                 app:cardElevation="6dp">
@@ -148,7 +109,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/guide"/>
+                        android:background="@drawable/guide" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -166,11 +127,11 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
-                android:onClick="About"
                 android:layout_columnWeight="1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
+                android:onClick="About"
                 app:cardBackgroundColor="@color/textcardColor"
                 app:cardCornerRadius="23dp"
                 app:cardElevation="6dp">
@@ -187,7 +148,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/pengembang2"/>
+                        android:background="@drawable/pengembang2" />
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -19,20 +19,23 @@ import org.yuni.chemicalnote.UnsurwApi;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnsurapiAdapter extends RecyclerView.Adapter<UnsurapiAdapter.MyViewHolder> implements Filterable {
+public class UnsurapiAdapter extends RecyclerView.Adapter<UnsurapiAdapter.MyViewHolder>  {
 
     private List<UnsurwApi> unsurwApiList;
-    private List<UnsurwApi> unsurwApiListFiltered;
     private Context context;
 
     private OnUnsClickListener listener;
 
-    public void setMovieList(Context context,final List<UnsurwApi> unsurwApiList){
+    public interface OnUnsClickListener {
+        public void onClick(View view, int position);
+    }
+
+
+    public void setUnsurList(Context context, final List<UnsurwApi> unsurwApiList) {
         this.context = context;
-        if(this.unsurwApiList == null){
+        if (this.unsurwApiList == null) {
             this.unsurwApiList = unsurwApiList;
-            this.unsurwApiListFiltered = unsurwApiList;
-            notifyItemChanged(0, unsurwApiListFiltered.size());
+            notifyItemChanged(0, unsurwApiList.size());
         } else {
             final DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
@@ -61,17 +64,12 @@ public class UnsurapiAdapter extends RecyclerView.Adapter<UnsurapiAdapter.MyView
                 }
             });
             this.unsurwApiList = unsurwApiList;
-            this.unsurwApiListFiltered = unsurwApiList;
             result.dispatchUpdatesTo(this);
         }
     }
 
-    public interface OnUnsClickListener {
-        public void onClick(View view, int position);
-    }
-
-    public void setListener(OnUnsClickListener listener){
-        this.listener=listener;
+    public void setListener(OnUnsClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -79,78 +77,47 @@ public class UnsurapiAdapter extends RecyclerView.Adapter<UnsurapiAdapter.MyView
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View vh = LayoutInflater.
                 from(viewGroup.getContext()).
-                inflate(R.layout.recyclerview_row_item,viewGroup,false);
+                inflate(R.layout.recyclerview_row_item, viewGroup, false);
         MyViewHolder viewHolder = new MyViewHolder(vh);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder MyViewHolder, int i) {
-        MyViewHolder.namaUns.setText(unsurwApiListFiltered.get(i).getName());
-        MyViewHolder.kat.setText(unsurwApiListFiltered.get(i).getCategory());
-        MyViewHolder.symboll.setText(unsurwApiListFiltered.get(i).getSymbol());
-        // Glide.with(context).load(movieListFiltered.get(position).getImageUrl()).apply(RequestOptions.centerCropTransform()).into(holder.image);
-
-        UnsurwApi unsurwApi = unsurwApiListFiltered.get(i);
-
-
-
+        UnsurwApi item = unsurwApiList.get(i);
+        MyViewHolder.namaUns.setText(item.getName());
+        MyViewHolder.kat.setText(item.getCategory());
+        MyViewHolder.symboll.setText(item.getSymbol());
+        MyViewHolder.numb.setText(item.getNumber());
     }
 
     @Override
     public int getItemCount() {
-        if(unsurwApiList != null){
-            return unsurwApiListFiltered.size();
+        if (unsurwApiList != null) {
+            return unsurwApiList.size();
         } else {
             return 0;
         }
     }
 
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                    unsurwApiListFiltered = unsurwApiList;
-                } else {
-                    List<UnsurwApi> filteredList = new ArrayList<>();
-                    for (UnsurwApi unsurwApi : unsurwApiList) {
-                        if (unsurwApi.getName().toLowerCase().contains(charString.toLowerCase())) {
-                            filteredList.add(unsurwApi);
-                        }
-                    }
-                    unsurwApiListFiltered = filteredList;
-
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = unsurwApiListFiltered;
-                return filterResults;
-
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                unsurwApiListFiltered = (ArrayList<UnsurwApi>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
+    public void filterList(List<UnsurwApi> filteredList) {
+        unsurwApiList = filteredList;
+        notifyDataSetChanged();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView namaUns, kat, symboll;
+        public TextView namaUns, kat, symboll, numb;
 
-        public MyViewHolder(@NonNull View itemView){
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            namaUns=itemView.findViewById(R.id.namaUnsur);
-            kat=itemView.findViewById(R.id.kat);
-            symboll=itemView.findViewById(R.id.symboll);
-            itemView.setOnClickListener(new View.OnClickListener(){
+            namaUns = itemView.findViewById(R.id.namaUnsur);
+            kat = itemView.findViewById(R.id.kat);
+            symboll = itemView.findViewById(R.id.symboll);
+            numb = itemView.findViewById(R.id.numb);
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
+                public void onClick(View v) {
                     listener.onClick(v, getAdapterPosition());
                 }
             });
